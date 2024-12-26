@@ -5,8 +5,8 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
 # تنظیمات اولیه
-BOT_TOKEN = "YOUR_BOT_TOKEN"  # توکن ربات تلگرام
-BASE_URL = "https://example.com/files/"  # URL پایه برای دریافت فایل‌ها
+BOT_TOKEN = "7183558367:AAHbfgRQYMyOU0dd1h96Z5B69sKN51VzUnc"  # توکن ربات تلگرام
+BASE_URL = "http://https://subdr.onlinewebshop.net/main/sub/"  # URL پایه برای دریافت فایل‌ها
 SAVE_DIR = "/v2plus/"  # پوشه‌ای که فایل‌ها در آن ذخیره می‌شوند
 
 # بررسی و ساخت پوشه ذخیره در صورت نیاز
