@@ -1,52 +1,3 @@
-<?php
-// نام صفحه را از URL دریافت کنید
-$page_name = basename($_SERVER['REQUEST_URI']);
-// حذف پسوند .php از نام صفحه
-if (substr($page_name, -4) === '.php') {
-  $page_name = substr($page_name, 0, -4);}
-// آدرس IP بازدید کننده را دریافت کنید
-$ip_address = $_SERVER['REMOTE_ADDR'];
-// تاریخ و زمان فعلی را دریافت کنید
-$date_time = date('Y-m-d H:i:s');
-// تبدیل زمان UTC به زمان تهران (GMT+3:30)
-$date_time_tehran = date('Y-m-d H:i:s', strtotime($date_time) + (3.5 * 3600));
-// اتصال به پایگاه داده
-$db_connection = mysqli_connect('fdb1031.runhosting.com', '4428161_db', 'mustafa1234', '4428161_db');
-// بررسی وجود IP در پایگاه داده
-$sql_query = "SELECT COUNT(*) FROM ip_addresses WHERE page_name = '$page_name' AND ip_address = '$ip_address'";
-$result = mysqli_query($db_connection, $sql_query);
-$row = mysqli_fetch_assoc($result);
-$count = $row['COUNT(*)'];
-// اگر IP موجود بود، اطلاعات آن را به روز رسانی کنید
-if ($count > 0) {
-  // تاریخ و زمان فعلی را دریافت کنید
- $date_time_tehran = date('Y-m-d H:i:s', strtotime($date_time) + (3.5 * 3600));
-  // اطلاعات IP را به روز رسانی کنید
-  $sql_query = "UPDATE ip_addresses SET date_time = '$date_time_tehran' WHERE page_name = '$page_name' AND ip_address = '$ip_address'";
-  mysqli_query($db_connection, $sql_query);
-} else {
-  // ذخیره IP در پایگاه داده
-  $sql_query = "INSERT INTO ip_addresses (page_name, ip_address, date_time) VALUES ('$page_name', '$ip_address', '$date_time_tehran')";
-  mysqli_query($db_connection, $sql_query);}
-// دریافت نوع وضعیت
-$sql_query = "SELECT status FROM ip_addresses WHERE page_name = '$page_name'";
-$result = mysqli_query($db_connection, $sql_query);
-$row = mysqli_fetch_assoc($result);
-$status = $row['status'];
-// بررسی نوع وضعیت
-if ($status === 'on') {
-  // بررسی وجود IP در لیست مجاز
-  $sql_query = "SELECT allow_ip FROM ip_addresses WHERE page_name = '$page_name'";
-  $result = mysqli_query($db_connection, $sql_query);
-  $row = mysqli_fetch_assoc($result);
-  $allow_ip = $row['allow_ip'];
-if ($ip_address === $allow_ip) {
-        //بستن اتصال به پایگاه داده
-  mysqli_close($db_connection);}
-        else {
-header('HTTP/1.0 404 Not Found');
-  exit;                }
-} ?>
 
 
 
@@ -95,7 +46,8 @@ header('HTTP/1.0 404 Not Found');
 
 
 
-vless://telegram-id-ArV2ray@speedtest.net:443?path=%2Ftelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%3Fed%3D2048&security=tls&encryption=none&alpn=h2,http/1.1&host=dwojwh8.ir&fp=chrome&type=ws&sni=speedtest.net#%F0%9F%97%93%EF%B8%8F+%DA%86%D9%87%D8%A7%D8%B1+%D8%B4%D9%86%D8%A8%D9%87+5+%D8%AF%DB%8C+1403+%F0%9F%97%93%EF%B8%8F
+
+vless://telegram-id-ArV2ray@speedtest.net:443?path=%2Ftelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%2Ctelegram-ArV2ray%3Fed%3D2048&security=tls&encryption=none&alpn=h2,http/1.1&host=dwojwh8.ir&fp=chrome&type=ws&sni=speedtest.net#%F0%9F%97%93%EF%B8%8F+%DB%8C%DA%A9%D8%B4%D9%86%D8%A8%D9%87+9+%D8%AF%DB%8C+1403+%F0%9F%97%93%EF%B8%8F
 
 
 
@@ -292,5 +244,5 @@ mysqli_close($connshowmessage);
 
 
 
-vless://99fbe47b-8e52-42f3-8155-547927156baa@1s1.romil-ltd.co.uk:443?security=reality&encryption=none&alpn=http/1.1&pbk=W5jAswnd_wfiaDerY2yy3zIyNUbWoks2-tmkAFOE7VA&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=telewebion.com&sid=d77fdb611c4c#%F0%9F%9F%A12
-vmess://eyJhZGQiOiIxczEucm9taWwtbHRkLmNvLnVrIiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJmYXN0LmNvbSIsImlkIjoiOTlmYmU0N2ItOGU1Mi00MmYzLTgxNTUtNTQ3OTI3MTU2YmFhIiwibmV0IjoidGNwIiwicGF0aCI6Ii83TDFLOFp3YjJrZ1BweWI2QUt4SU14IiwicG9ydCI6IjgwIiwicHMiOiLwn5+hMSIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiIiLCJ0eXBlIjoiaHR0cCIsInYiOiIyIn0=
+vless://b4bab86a-2418-483e-8e88-57e6f0db333a@1s1.romil-ltd.co.uk:443?security=reality&encryption=none&alpn=http/1.1&pbk=W5jAswnd_wfiaDerY2yy3zIyNUbWoks2-tmkAFOE7VA&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=telewebion.com&sid=d77fdb611c4c#%F0%9F%9F%A12
+vmess://eyJhZGQiOiIxczEucm9taWwtbHRkLmNvLnVrIiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJmYXN0LmNvbSIsImlkIjoiYjRiYWI4NmEtMjQxOC00ODNlLThlODgtNTdlNmYwZGIzMzNhIiwibmV0IjoidGNwIiwicGF0aCI6Ii83TDFLOFp3YjJrZ1BweWI2QUt4SU14IiwicG9ydCI6IjgwIiwicHMiOiLwn5+hMSIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiIiLCJ0eXBlIjoiaHR0cCIsInYiOiIyIn0=
