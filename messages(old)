@@ -6,6 +6,7 @@
 
 
 <?php
+inculde '../config.php';
 $user_name = basename($_SERVER['REQUEST_URI']);
 if (substr($user_name, -4) === '.php') {
 $user_name = substr($user_name, 0, -4);}
