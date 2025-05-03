@@ -1,0 +1,20 @@
+
+
+
+
+
+
+
+<?php
+$user_name = basename($_SERVER['REQUEST_URI']);
+if (substr($user_name, -4) === '.php') {
+$user_name = substr($user_name, 0, -4);}
+$connshowmessage = new mysqli($servername, $username, $password, $dbname);
+$sqlshowmessage = "SELECT message1, message2, message3 FROM messages WHERE user_name = '$user_name'";
+$resultshowmessage = mysqli_query($connshowmessage, $sqlshowmessage);
+if (mysqli_num_rows($resultshowmessage) > 0) {
+    $row = mysqli_fetch_assoc($resultshowmessage);
+    echo $row['message1'];
+} 
+mysqli_close($connshowmessage);
+?>
