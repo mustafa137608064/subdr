@@ -1,11 +1,12 @@
 <?php
-
+include 'config.php';
 // دریافت اطلاعات از فرم
 $user_name = $_POST['user_name'];
 $message3 = $_POST['message3'];
 
 // اتصال به پایگاه داده
-$db_connection = mysqli_connect('fdb1031.runhosting.com', '4428161_db', 'mustafa1234', '4428161_db');
+
+$db_connection = new mysqli($servername, $username, $password, $dbname);
 
 $check_query = "SELECT * FROM messages WHERE user_name = '$user_name'";
 $result = mysqli_query($db_connection, $check_query);
