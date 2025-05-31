@@ -105,7 +105,7 @@ vless://telegram-id-ArV2ray@speedtest.net:443?path=%2Ftelegram-ArV2ray%2Ctelegra
 
 vless://21c1c5e6-52fd-4e63-96d9-a7ec002f60aa@192.168.1.1:1111?mode=gun&security=tls&encryption=none&alpn=h2&fp=chrome&type=grpc&serviceName=#📊 زمان اتمام سرویس: ♾️ روز دیگر 📊
 
-
+vless://64f05df5-3f67-41ae-dbfe-56e55cfb72f3@188.34.164.75:2053?path=%2Ftelegram%2C%40BINEXTIFY-telegram%2C%40BINEXTIFY-telegram%2C%40BINEXTIFY-telegram%2C%40BINEXTIFY-telegram%2C%40BINEXTIFY-telegram%2C%40BINEXTIFY-telegram%2C%40BINEXTIFY-telegram%2C%40BINEXTIFY-telegram%2C%40BINEXTIFY%3Fed%3D2560&security=none&encryption=none&type=ws#%40
 
 
 
